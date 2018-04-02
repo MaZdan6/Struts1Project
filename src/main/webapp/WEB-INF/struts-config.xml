@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC 
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" 
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+	<form-beans>
+	<form-bean name="userForm" type="org.zdanek.common.form.UserForm" />
+
+	<form-bean name="mathForm" type="org.zdanek.struts.calculations.MathForm" />
+
+</form-beans>
+
+	<action-mappings>
+	
+	    <action
+			path="/LoginPage"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/pages/login.jsp"/>
+	
+		<action
+			path="/Login"
+			type="org.zdanek.common.action.UserAction"
+			name="userForm"
+			validate="true"
+			input="/pages/login.jsp"
+			>	
+			
+			<forward name="success" path="/pages/welcome.jsp"/>
+		</action>
+		
+		<action
+			path="/Math"
+			type="org.zdanek.struts.calculations.MathAction"
+			name="mathForm"
+			validate="true"
+			input="/pages/math.jsp"
+			>
+			<forward name="success" path="/pages/math.jsp"/>
+		</action>
+		
+		<!-- akcja z parameter="method". Parametr definiuje, jak metoda ma być wywołana -->
+		<action
+			path="/Math2"
+			type="org.zdanek.struts.calculations.MathAction2"
+			name="mathForm"
+			validate="true"
+			input="/pages/math.jsp"
+			parameter="method" 
+			>
+			<forward name="success" path="/pages/math.jsp"/>
+			<forward name="failure" path="/pages/falure.jsp"/>
+		</action>
+	
+		<!-- prosta akcja, która wyświetla stronę jsp -->
+		<action
+			path="/MathPage"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/pages/math.jsp"/>
+			
+	</action-mappings>
+
+	<message-resources
+		parameter="org.zdanek.common.properties.Common" />
+
+</struts-config>
