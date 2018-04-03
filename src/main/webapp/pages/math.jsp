@@ -14,17 +14,17 @@
 <script src="js/Chart.js"></script>
 </head>
 <body>
-	<h1>Math</h1>
+	<h1 class="text-center">Math</h1>
 
 
-	<div id="arithmeticForm">
+	<div id="arithmeticForm" class="container text-center">
 		<h3>
 			<bean:message key="label.math.arithmetic.name" />
 		</h3>
 		<html:form action="/Math">
 
 			<div style="color: red">
-				<html:errors property="operator"/>
+				<html:errors property="operator" />
 			</div>
 			<!--
 
@@ -36,11 +36,11 @@
 		</html:messages>
 
 -->
-			<div style="padding: 16px">
-				
-				<html:errors property="operator"/>
-				<html:errors property="org.apache.struts.action.GLOBAL_MESSAGE"/>
-				
+			<div id="arithmetic">
+
+				<html:errors property="operator" />
+				<html:errors property="org.apache.struts.action.GLOBAL_MESSAGE" />
+
 				<html:text property="a" size="10" maxlength="20" />
 				<html:text property="operator" size="1" maxlength="1" />
 				<html:text property="b" size="10" maxlength="20" />
@@ -48,15 +48,18 @@
 				<bean:write name="mathForm" property="result" />
 			</div>
 
-			<div style="padding: 16px">
-				<div style="float: left; padding-right: 8px;">
+			
+			<div class="form-check form-check-inline">
+				<div >
 					<html:submit>
 						<bean:message key="label.common.button.submit" />
 					</html:submit>
 				</div>
-				<html:reset>
-					<bean:message key="label.common.button.reset" />
-				</html:reset>
+				<div >
+					<html:reset>
+						<bean:message key="label.common.button.reset" />
+					</html:reset>
+				</div>
 			</div>
 
 		</html:form>
@@ -66,14 +69,15 @@
 
 
 
-	<div id="quadraticConrainer" class="container">
+	<div id="quadraticConrainer " class="container text-center">
+		<h3>
+			<bean:message key="label.math.quatratic.name" />
+		</h3>
 		<div class="card-deck mb-3 text-center">
 			<div class="card mb-4 box-shadow">
 				111
 				<div id="guadraticForm">
-					<h3>
-						<bean:message key="label.math.quatratic.name" />
-					</h3>
+
 
 					<html:form action="/Math2">
 
@@ -81,7 +85,7 @@
 							<html:errors />
 						</div>
 
-						<div style="padding: 16px">
+						<div >
 
 							<html:text property="a" size="5" maxlength="5" />
 							x^2+
@@ -90,8 +94,8 @@
 							<html:text property="c" size="5" maxlength="5" />
 						</div>
 
-						<div style="padding: 16px">
-							<div style="float: left; padding-right: 8px;">
+						<div class="form-check form-check-inline">
+							<div >
 								<html:submit property="method" value="quadratic">
 									<bean:message key="label.common.button.submit" />
 								</html:submit>
@@ -104,13 +108,22 @@
 					</html:form>
 				</div>
 			</div>
-			<div class="card mb-4 box-shadow">
+
+			<div id="chart" class=" mb-4 w-50 box-shadow" >
+				333
+				<div id="chart" >
+					<h3>Chart</h3>
+					<canvas id="myChart" width="400px" height="300px"></canvas>
+				</div>
+			</div>
+
+			<div class="card mb-4 box-shadow text-center">
 				222
-				<div id="points">
+				<div id="points" class="text-center">
 					<h3>Points</h3>
 					<!-- jeśli lista nie jest pusta, to tworzona jest tabela punktów -->
 					<logic:present name="points">
-						<table id="pointsTable">
+						<table id="pointsTable" class="text-center"	>
 							<th>x</th>
 							<th>y</th>
 							<logic:iterate name="points" id="point">
@@ -124,13 +137,7 @@
 
 				</div>
 			</div>
-			<div class="card mb-4 box-shadow">
-				333
-				<div id="chart">
-					<h3>Chart</h3>
-					<canvas id="myChart" width="400px" height="400px"></canvas>
-				</div>
-			</div>
+
 		</div>
 	</div>
 
@@ -165,26 +172,27 @@
 
 				/* console.log(point) */
 				points.push(point);
-			};
+			}
+			;
 
 			return points
 		}
 
 		var points = getPoints();
-		
-		function getXValues(points){
+
+		function getXValues(points) {
 			console.log('getXValues - start')
-			
-			var xValues=[];
-			for(var i=0 ; i<points.length; i++){
+
+			var xValues = [];
+			for (var i = 0; i < points.length; i++) {
 				xValues.push(points[i].x)
 			}
-			
+
 			return xValues
 		}
-		
+
 		var xValues = getXValues(points);
-		
+
 		console.log(xValues);
 		console.log(points)
 
