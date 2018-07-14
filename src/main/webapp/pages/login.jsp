@@ -37,6 +37,8 @@
 </html:form>
 
 <html:link action="/MathPage">Math</html:link> 
+<br/>
+<html:link action="/PDF">PDF</html:link> 
 
 </body>
 </html>
